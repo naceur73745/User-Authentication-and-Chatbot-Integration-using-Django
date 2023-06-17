@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Set background image */
+    body {
+      background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3AtMjAwLWV5ZS0wMzQyNzAyLmpwZw.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    /* logout */ 
+
+
+
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .logout a {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    .logout a:hover {
+      background-color: #d32f2f;
+    } 
+
+
+
+    /* Style the header */
+    h1 {
+      color: #333;
+      font-size: 36px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    /* Style the form */
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 60%;
+      box-shadow: 0px 0px 5px #ccc;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0px 0px 5px #4CAF50;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3E8E41;
+    }
+
+    /* Style the chat bubbles */
+    .chat-bubble {
+      max-width: 80%;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      line-height: 1.5;
+    }
+
+    .chat-bubble-user {
+      background-color: #fff;
+      color: #333;
+      align-self: flex-start;
+      box-shadow: 0px 0px 5px #ccc;
+    }
+
+    .chat-bubble-bot {
+      background-color: #4CAF50;
+      color: #fff;
+      align-self: flex-end;
+      box-shadow: 0px 0px 5px #4CAF50;
+    }
+
+    /* Style the clear button */
+    .clear-button {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 20px;
+      box-shadow: 0px 0px 5px #ff4d4d;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .clear-button:hover {
+      background-color: #e60000;
+    }
+  </style>
+  <title>Chatbot</title>
+</head>
+<body>
+  <h1>Chatbot</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="message">
+    <button type="submit" name="submit" value="true">Send</button>
+
+  </form>
+    {% csrf_token %}
+    {% if history %}
+        <div class="history">
+            {% for entry in history %}
+                {% if entry.user %}
+                    <div class="chat-bubble chat-bubble-user">{{ entry.user }}</div>
+                {% endif %}
+                {% if entry.bot %}
+                    <div class="chat-bubble chat-bubble-bot">{{ entry.bot }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+  {% endif %}
+   
+    <div class="logout">
+      <form method="POST" action="http://127.0.0.1:8000/logout/">
+          {% csrf_token %}
+       <button type="submit" class="btn btn-danger" name="logout" value="true">Logout</button>
+      </form>
+  
+  </div>
+  
+  </body>
+</html>

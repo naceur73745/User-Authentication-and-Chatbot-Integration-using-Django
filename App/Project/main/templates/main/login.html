@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-lJ1Blyvq3WLy8Up2GLDkfGcPfcmtvLVkWmX+piT1JZTtTwpL3tqWlSLlQdD+lCDiUbgo21TtRbSYXrtlvTtTQQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+
+
+    <style>
+			* {
+		    margin: 0;
+		    padding: 0;
+		    box-sizing: border-box;
+		    font-family: sans-serif;
+		}
+
+		/* Login Section */
+
+		.login {
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    min-height: 100vh;
+		    background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3AtMjAwLWV5ZS0wMzQyNzAyLmpwZw.jpg');
+		    background-size: cover;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		}
+
+		.loginContainer {
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    flex-wrap: wrap;
+		}
+
+		.loginImage {
+		    flex: 1;
+		    max-width: 50%;
+		    height: 100%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.loginImage img {
+		    max-width: 80%;
+		    height: auto;
+		}
+		.loginForm .formContainer {
+		background-color: #fff;
+		padding: 40px;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		text-align: center;
+		}
+
+		.loginForm h1 {
+		font-size: 2rem;
+		margin-bottom: 20px;
+		}
+
+		.loginForm label {
+		display: block;
+		margin-bottom: 8px;
+		font-size: 1.2rem;
+		}
+
+		.loginForm input[type="text"],
+		.loginForm input[type="password"] {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		border: none;
+		outline: none;
+		font-size: 1.1rem;
+		background-color: #f1f1f1;
+		}
+
+		.loginForm button {
+		padding: 10px 30px;
+		border: none;
+		background-color: #4caf50;
+		color: #fff;
+		border-radius: 5px;
+		font-size: 1.2rem;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		}
+
+		.loginForm button:hover {
+		background-color: #3e8e41;
+		}
+
+		@media (max-width: 768px) {
+		.loginContainer {
+		flex-direction: column;
+		}
+
+		arduino
+		Copy code
+		.loginImage {
+		    max-width: 100%;
+		    max-height: 50%;
+		}
+
+		.loginForm {
+		    max-width: 100%;
+		}
+
+	</style>
+</head>
+<body>
+    <section class="login">
+        <div class="loginContainer">
+            
+            <div class="loginForm">
+                <h2 class="title">Login</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="inputBox">
+                        <input type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" name="login" value="true">Login</button>
+                </form>
+                <div class="socialIcons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                </div>
+                <div class="signupLink">
+                    <p>Don't have an account? <a href="http://127.0.0.1:8000/register/">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
